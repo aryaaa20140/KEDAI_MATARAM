@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Makanan</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="page-container" id="food-menu-container">
+    <h2>Daftar Menu Makanan (Grid 3x4)</h2>
+    
+    <div class="food-grid">
+        <div class="food-item" data-name="Nasi Goreng Spesial" data-price="Rp 25.000">Nasi Goreng Spesial</div>
+        <div class="food-item" data-name="Mie Ayam Bakso" data-price="Rp 20.000">Mie Ayam Bakso</div>
+        <div class="food-item" data-name="Sate Ayam" data-price="Rp 30.000">Sate Ayam</div>
+        
+        <div class="food-item" data-name="Capcay Kuah" data-price="Rp 22.000">Capcay Kuah</div>
+        <div class="food-item" data-name="Ayam Geprek" data-price="Rp 18.000">Ayam Geprek</div>
+        <div class="food-item" data-name="Gado-Gado" data-price="Rp 17.000">Gado-Gado</div>
+        
+        <div class="food-item" data-name="Es Teh Manis" data-price="Rp 5.000">Es Teh Manis</div>
+        <div class="food-item" data-name="Es Jeruk" data-price="Rp 8.000">Es Jeruk</div>
+        <div class="food-item" data-name="Kopi Hitam" data-price="Rp 10.000">Kopi Hitam</div>
+        
+        <div class="food-item" data-name="Piscok" data-price="Rp 12.000">Piscok</div>
+        <div class="food-item" data-name="Tahu Isi" data-price="Rp 7.000">Tahu Isi</div>
+        <div class="food-item" data-name="Kerupuk" data-price="Rp 3.000">Kerupuk</div>
+    </div>
+
+    <a href="main_menu.html" class="btn" style="background-color: #6c757d; margin-top: 20px;">&larr; Kembali ke Pilihan</a>
+</div>
+
+<div id="priceModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" onclick="closeModal()">&times;</span>
+        <h3>Detail Menu</h3>
+        <p>Nama Menu: <strong id="modal-food-name"></strong></p>
+        <p>Harga: <strong id="modal-food-price"></strong></p>
+    </div>
+</div>
+
+<script>
+    // --- LOGIKA POP-UP (MODAL) ---
+
+    const modal = document.getElementById('priceModal');
+    const foodNameElement = document.getElementById('modal-food-name');
+    const foodPriceElement = document.getElementById('modal-food-price');
+
+    // Tambahkan event listener ke setiap item makanan
+    document.querySelectorAll('.food-item').forEach(item => {
+        item.addEventListener('click', function() {
+            const name = this.getAttribute('data-name');
+            const price = this.getAttribute('data-price');
+            
+            // Isi konten pop-up
+            foodNameElement.textContent = name;
+            foodPriceElement.textContent = price;
+
+            // Tampilkan pop-up
+            modal.style.display = 'block';
+        });
+    });
+
+    // Fungsi untuk menutup pop-up
+    function closeModal() {
+        modal.style.display = 'none';
+    }
+
+    // Tutup pop-up jika pengguna mengklik di luar area pop-up
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            closeModal();
+        }
+    }
+</script>
+
+</body>
+</html>
